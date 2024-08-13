@@ -1,11 +1,11 @@
 import random
 
 def draw_card():
-    """返回一张随机的扑克牌点数"""
+    """返回一張回機的牌"""
     return random.randint(1, 11)
 
 def calculate_hand(hand):
-    """计算手牌的总点数"""
+    """計算玩家牌的數"""
     total = sum(hand)
     # A牌要1還是11
     if total > 21 and 11 in hand:
