@@ -1,27 +1,22 @@
 import random
 
 def draw_card():
-    """返回一張隨機的牌"""
+    """返回一張回機的牌"""
     return random.randint(1, 11)
 
 def calculate_hand(hand):
-    """計算玩家牌的總數"""
+    """計算玩家牌的數"""
     total = sum(hand)
     # A牌要1還是11
     if total > 21 and 11 in hand:
         total -= 10
     return total
 
-def display_hand(hand):
-    """顯示手牌，如果有1或11就顯示為 'A'"""
-    display = ['A' if card == 11 else str(card) for card in hand]
-    return display
-
 def play_blackjack():
     bank = int(input('輸入一開始的點數:'))
     while bank > 0:
         print(f"\n你目前的點數為: {bank}")
-        bet = int(input("輸入下注金額: "))
+        bet = int(input("輸入下你得注金額: "))
         if bet <= 0 or bet > bank:
             print("下注金額無效，請重新輸入:")
             continue
@@ -29,15 +24,15 @@ def play_blackjack():
         player_hand = [draw_card(), draw_card()]
         dealer_hand = [draw_card(), draw_card()]
 
-        print(f"你的牌為: {display_hand(player_hand)} 總共是: {calculate_hand(player_hand)}")
-        print(f"莊家的第一張牌: {display_hand([dealer_hand[0]])}")
+        print(f"你的牌為: {player_hand} 總共是: {calculate_hand(player_hand)}")
+        print(f"莊家的第一張牌: {dealer_hand[0]}")
 
         # 玩家回合
         while True:
-            action = input("要牌請輸入[Y]，停牌請輸入[N]: ").upper()
+            action = input("要牌請輸入[Y]，停牌請輸入[N]:").upper()
             if action == 'Y':
                 player_hand.append(draw_card())
-                print(f"你的牌為: {display_hand(player_hand)} 總共是: {calculate_hand(player_hand)}")
+                print(f"你的牌為: {player_hand} 總共是: {calculate_hand(player_hand)}")
                 if calculate_hand(player_hand) > 21:
                     print("爆了啦:>")
                     bank -= bet
@@ -48,13 +43,13 @@ def play_blackjack():
                 print("輸入無效，請重新輸入:")
 
         if calculate_hand(player_hand) <= 21:
-            # 莊家的回合
-            print(f"莊家的牌為: {display_hand(dealer_hand)} 總共是: {calculate_hand(dealer_hand)}")
+            # 莊家的時候
+            print(f"莊家的牌為: {dealer_hand} 總共是: {calculate_hand(dealer_hand)}")
             while calculate_hand(dealer_hand) < 17:
                 dealer_hand.append(draw_card())
                 import time
                 time.sleep(2.3)
-                print(f"莊家的牌為: {display_hand(dealer_hand)} 總共是: {calculate_hand(dealer_hand)}")
+                print(f"莊家的牌為: {dealer_hand} 總共是: {calculate_hand(dealer_hand)}")
             
             player_total = calculate_hand(player_hand)
             dealer_total = calculate_hand(dealer_hand)
@@ -71,10 +66,8 @@ def play_blackjack():
                 print("平局！")
         
         if bank > 0:
-            cont = input("繼續請輸入[Y] 退出請輸入[N]: ").upper()
-            while cont not in ['Y', 'N']:
-                print("輸入無效，請重新輸入:")
-                cont = input("繼續請輸入[Y] 退出請輸入[N]: ").upper()
+            print('目前點數為:',bank)
+            cont = input("繼續請輸入[Y] 退出請輸入[N]:").upper()
             if cont != 'Y':
                 break
     
