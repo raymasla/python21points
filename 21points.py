@@ -1,7 +1,7 @@
 import random
 
 def draw_card():
-    """返回一張回機的牌"""
+    """返回一張隨機的牌"""
     return random.randint(1, 11)
 
 def calculate_hand(hand):
