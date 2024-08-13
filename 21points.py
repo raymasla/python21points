@@ -48,13 +48,13 @@ def play_blackjack():
             while calculate_hand(dealer_hand) < 17:
                 dealer_hand.append(draw_card())
                 import time
-                time.sleep(2)
+                time.sleep(2.3)
                 print(f"莊家的牌為: {dealer_hand} 總共是: {calculate_hand(dealer_hand)}")
             
             player_total = calculate_hand(player_hand)
             dealer_total = calculate_hand(dealer_hand)
             import time
-            time.sleep(1)
+            time.sleep(2)
             
             if dealer_total > 21 or player_total > dealer_total:
                 print("恭喜你赢了！")
@@ -66,6 +66,7 @@ def play_blackjack():
                 print("平局！")
         
         if bank > 0:
+            print('目前點數為:',bank)
             cont = input("繼續請輸入[Y] 退出請輸入[N]:").upper()
             if cont != 'Y':
                 break
